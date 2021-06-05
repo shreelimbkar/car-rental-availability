@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome to React application to display car rental availability</h1>
+    <div className="container">
+      <h1>Car rental availability</h1>
+      <Home />
     </div>
   );
 }
