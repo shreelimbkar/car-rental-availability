@@ -6,10 +6,11 @@ export default function CarAvailability() {
     const [vehRentalCore, setVehRentalCore] = useState(null);
     const [vehVendorAvails, setVehVendorAvails] = useState(null);
     const [arrAvailableCars, setArrAvailableCars] = useState([]);
-    const [vehCode, setVehCode] = useState("All");
+    const [vehCode, setVehCode] = useState("");
 
     useEffect(() => {
         getCarsData();
+        setVehCode("All")
         // console.log("vehRentalCore", cars.VehRentalCore, vehRentalCore);
     }, []);
 
@@ -20,12 +21,11 @@ export default function CarAvailability() {
             setVehVendorAvails(cars.VehVendorAvails);
             // console.log("cars.VehRentalCore", cars.VehRentalCore);
             // console.log("cars.VehVendorAvails", cars.VehVendorAvails);
+            const ar = getAvailableCars(vehVendorAvails, vehCode);
+            console.log('ar', ar);
+            setArrAvailableCars(ar);
         }
-    }, [cars]);
-
-    useEffect(() => {
-        // setArrAvailableCars(getAvailableCars(vehVendorAvails));
-    }, [vehVendorAvails])
+    }, [cars, vehVendorAvails, vehCode]);
 
     const getCarsData = async () => {
         const response = await fetch("http://www.cartrawler.com/ctabe/cars.json");
@@ -35,20 +35,25 @@ export default function CarAvailability() {
     }
 
     const getAvailableCars = (vehVendorAvails, venCode) => {
-        console.log("vehVendorAvails", vehVendorAvails);
+        // console.log("vehVendorAvails", vehVendorAvails);
         let arrCA;
-        if (venCode === "All") {
-            console.log("venCode", venCode);
-            arrCA = vehVendorAvails.map(x => x.VehAvails);
-        } else {
-            vehVendorAvails.filter((c) => {
-                console.log(c.VehAvails);
-                // if (c.Vendor["@Code"] === "125") {
-                    // console.log("c.VehAvails", c.VehAvails);
-                // }
-            })
+        if (vehVendorAvails && venCode === "All") {
+            // console.log("venCode", venCode);
+            arrCA =  vehVendorAvails.reduce(
+                (arr, elem) => arr.concat(elem.VehAvails), []
+            );
         }
-        console.log("arrCA", arrCA);
+        // } else {
+        //     vehVendorAvails.filter((c) => {
+        //         // console.log(c.VehAvails);
+        //         if (c.Vendor["@Code"] === "125") {
+        //             // console.log("c.VehAvails", c.VehAvails);
+        //             return c.VehAvails;
+        //         }
+        //     })
+        // }
+        // console.log("arrCA", arrCA);
+        return arrCA;
     }
 
     return (
@@ -86,14 +91,7 @@ export default function CarAvailability() {
                     <div className="vehAvails">
                         <h2>Available Cars</h2>
                         {
-                            getAvailableCars(vehVendorAvails, vehCode)
-                            // console.log("setArrAvailableCars", vehVendorAvails)
-                            // vehVendorAvails.filter((c) => {
-                            //     console.log(c.VehAvails);
-                            //     // if (c.Vendor["@Code"] === "125") {
-                            //         // console.log("c.VehAvails", c.VehAvails);
-                            //     // }
-                            // })
+                            console.log("setArrAvailableCars", arrAvailableCars)
                         }
                     </div>
                 )
