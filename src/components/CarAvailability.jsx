@@ -22,7 +22,7 @@ export default function CarAvailability() {
             // console.log("cars.VehRentalCore", cars.VehRentalCore);
             // console.log("cars.VehVendorAvails", cars.VehVendorAvails);
             const ar = getAvailableCars(vehVendorAvails, vehCode);
-            console.log('ar', ar);
+            // console.log('ar', ar);
             setArrAvailableCars(ar);
         }
     }, [cars, vehVendorAvails, vehCode]);
@@ -35,23 +35,25 @@ export default function CarAvailability() {
     }
 
     const getAvailableCars = (vehVendorAvails, venCode) => {
-        // console.log("vehVendorAvails", vehVendorAvails);
-        let arrCA;
+        console.log("vehVendorAvails, venCode", vehVendorAvails, venCode);
+        let arrCA, filteredCars;
         if (vehVendorAvails && venCode === "All") {
-            // console.log("venCode", venCode);
+            console.log("IF venCode", venCode);
             arrCA =  vehVendorAvails.reduce(
                 (arr, elem) => arr.concat(elem.VehAvails), []
             );
+        } else {
+            // console.log("ELSE venCode", vehVendorAvails, venCode);
+            if (vehVendorAvails) {
+                vehVendorAvails.filter((c) => {
+                    if (c.Vendor["@Code"] === venCode) {
+                        filteredCars = c.VehAvails;
+                    }
+                    return filteredCars;
+                })
+            }
+            setArrAvailableCars(filteredCars);
         }
-        // } else {
-        //     vehVendorAvails.filter((c) => {
-        //         // console.log(c.VehAvails);
-        //         if (c.Vendor["@Code"] === "125") {
-        //             // console.log("c.VehAvails", c.VehAvails);
-        //             return c.VehAvails;
-        //         }
-        //     })
-        // }
         // console.log("arrCA", arrCA);
         return arrCA;
     }
@@ -78,8 +80,10 @@ export default function CarAvailability() {
                     <div className="vehVendor">
                         <h2>Vendors</h2>
                     <ul>
-                        {vehVendorAvails.map((ven, index) => {
-                            return (<li key={index}>Vendor Name: { ven.Vendor["@Name"] }, { ven.Vendor["@Code"] }</li>)
+                            {vehVendorAvails.map((ven, index) => {
+                                const vName = ven.Vendor["@Name"];
+                                const vCode = ven.Vendor["@Code"];
+                            return (<li key={index} onClick={()=> {getAvailableCars(vehVendorAvails, vCode)}}>{ vName } ({ vCode })</li>)
                         })}
                             </ul>
                     {/* {console.log("vehVendorAvails", vehVendorAvails)} */}
@@ -87,12 +91,34 @@ export default function CarAvailability() {
                 )
             }
             {
-                vehVendorAvails && (
+                vehVendorAvails && arrAvailableCars && (
                     <div className="vehAvails">
                         <h2>Available Cars</h2>
                         {
                             console.log("setArrAvailableCars", arrAvailableCars)
                         }
+                        <main className="cards">
+                            {
+                                arrAvailableCars.map((car, index) => {
+                                    return (
+                                        <article className="card" key={index}>
+                                            <img src={car.Vehicle.PictureURL} alt={car.Vehicle.VehMakeModel["@Name"]} title={car.Vehicle.VehMakeModel["@Name"]} />
+                                            <div className="text">
+                                                <h4>{car.Vehicle.VehMakeModel["@Name"]}</h4>
+                                                <p><span className="title">Air Condition</span><span className="card-text">{(car.Vehicle["@AirConditionInd"]) ? "Available" : "UnAvailable"}</span>
+                                                    <span className="title">Transmission Type</span><span className="card-text">{car.Vehicle["@TransmissionType"]}</span>
+                                                    <span className="title">Fuel Type</span><span className="card-text">{car.Vehicle["@FuelType"]}</span>
+                                                    <span className="title">Drive Type</span><span className="card-text">{car.Vehicle["@DriveType"]}</span>
+                                                    <span className="title">Passenger Quantity</span><span className="card-text">{car.Vehicle["@PassengerQuantity"]}</span>
+                                                    <span className="title">Baggage Quantity</span><span className="card-text">{car.Vehicle["@BaggageQuantity"]}</span>
+                                                    </p>
+                                            </div>
+                                        </article>
+                                    )
+                                })
+                            }
+                            
+                        </main>
                     </div>
                 )
             }

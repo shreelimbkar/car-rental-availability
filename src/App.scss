@@ -72,4 +72,66 @@ small,
       font-weight: bold;
     }
   }
+  .vehVendor {
+    ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+    }
+    ul li {
+      border: 1px solid #05386b;
+      padding: 1rem;
+      margin-right: 5px;
+      border-radius: 5px;
+      &:hover {
+        background-color: #edf5e1;
+        cursor: pointer;
+      }
+    }
+  }
+  .vehAvails {
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      // justify-content: space-between;
+    }
+    .card {
+      flex: 0 0 250px;
+      margin: 10px;
+      background-color: #edf5e1;
+      border: 1px solid #05386b;
+      box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+    .card img {
+      max-width: 100%;
+      background-color: #fff;
+      border-bottom: 1px solid #05386b;
+    }
+    .card .text {
+      padding: 0 20px 20px;
+    }
+    .card .text p {
+      word-break: break-all;
+      span.title {
+        font-weight: bold;
+      }
+      span.title::after {
+        content: " - ";
+      }
+    }
+    .card .text p span.card-text::after {
+      content: ", ";
+    }
+    .card .text h4 {
+      margin: 0 0 1rem 0;
+    }
+    .card .text > button {
+      background: #379683;
+      border: 0;
+      color: white;
+      padding: 10px;
+      width: 100%;
+    }
+  }
 }
