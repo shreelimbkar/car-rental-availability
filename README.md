@@ -17,6 +17,7 @@ Using React, create a website that displays a visual representation of the follo
 - HTTP Query - I have used fetch, async, await however, Fetching data from the remote server is one of the most common tasks for dynamic react applications. For standard CRUD operations, Axios is a great choice.
 - Utility - I have created a utility file that contains all of the common functions that we may utilize in our project.
 - I have just covered snapshot testing.
+- Used Heroku for CI/CD and deployment.
 
 ## GitHub Repo
 

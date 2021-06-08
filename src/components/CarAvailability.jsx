@@ -33,7 +33,7 @@ export default function CarAvailability() {
     }, [cars, vehVendorAvails, vehCode]);
 
     const getCarsData = async () => {
-        const response = await fetch("http://www.cartrawler.com/ctabe/cars.json");
+        const response = await fetch("https://www.cartrawler.com/ctabe/cars.json");
         const data = await response.json();
         // console.log("data", data[0].VehAvailRSCore)
         setCars(data[0].VehAvailRSCore);
