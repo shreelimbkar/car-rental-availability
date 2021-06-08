@@ -3,7 +3,6 @@
   "description": "React application to display car rental availability",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://shreelimbkar.github.io/car-rental-availability/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
