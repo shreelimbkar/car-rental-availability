@@ -1,15 +1,19 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400");
+$white-color: #fff;
+$bg-color: #5cdb95;
+$base-color: #05386b;
+$card-bg: #edf5e1;
 
 html {
   font-size: 100%;
 } /*16px*/
 
 body {
-  background: #5cdb95;
+  background: $bg-color;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   line-height: 1.75;
-  color: #05386b;
+  color: $base-color;
   margin: 0;
 }
 
@@ -64,11 +68,11 @@ small,
   .vehAvails {
     padding: 1rem;
     margin-bottom: 1rem;
-    border: 1px solid #05386b;
+    border: 1px solid $base-color;
     h2 {
       margin: 0;
       font-size: 1.2rem;
-      color: #fff;
+      color: $white-color;
       font-weight: bold;
     }
   }
@@ -79,13 +83,16 @@ small,
       padding: 0;
     }
     ul li {
-      border: 1px solid #05386b;
+      border: 1px solid $base-color;
       padding: 1rem;
       margin-right: 5px;
       border-radius: 5px;
       &:hover {
-        background-color: #edf5e1;
+        background-color: $card-bg;
         cursor: pointer;
+      }
+      &.active {
+        background-color: $card-bg;
       }
     }
   }
@@ -96,17 +103,21 @@ small,
       // justify-content: space-between;
     }
     .card {
-      flex: 0 0 250px;
+      flex: 0 0 245px;
       margin: 10px;
-      background-color: #edf5e1;
-      border: 1px solid #05386b;
+      background-color: $card-bg;
+      border: 1px solid $base-color;
       box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
       cursor: pointer;
     }
+    .card a {
+      color: $base-color;
+      text-decoration: none;
+    }
     .card img {
       max-width: 100%;
-      background-color: #fff;
-      border-bottom: 1px solid #05386b;
+      background-color: $white-color;
+      border-bottom: 1px solid $base-color;
     }
     .card .text {
       padding: 0 20px 20px;
@@ -125,13 +136,6 @@ small,
     }
     .card .text h4 {
       margin: 0 0 1rem 0;
-    }
-    .card .text > button {
-      background: #379683;
-      border: 0;
-      color: white;
-      padding: 10px;
-      width: 100%;
     }
   }
 }

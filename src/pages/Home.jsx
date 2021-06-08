@@ -4,7 +4,8 @@ import CarAvailability from "../components/CarAvailability";
 
 export default function Home() {
     return (
-        <div>
+        <div className="container">
+            <h1>Car rental availability</h1>
             <CarAvailability />
         </div>
     )
