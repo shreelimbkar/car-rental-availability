@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
+import { getFormattedDate } from "../utils/utils";
+
 export default function CarAvailability() {
 
     const [cars, setCars] = useState(null);
@@ -81,8 +83,8 @@ export default function CarAvailability() {
                     <h2>Pickup/Return information (Legend)</h2>
                     <div className="vehRental">
                         <ul>
-                            <li>PickUp Date: { vehRentalCore["@PickUpDateTime"]}</li>
-                            <li>Return Date: { vehRentalCore["@ReturnDateTime"]}</li>
+                            <li>PickUp Date: { getFormattedDate(vehRentalCore["@PickUpDateTime"])}</li>
+                            <li>Return Date: { getFormattedDate(vehRentalCore["@ReturnDateTime"])}</li>
                             <li>PickUp Location: { vehRentalCore.PickUpLocation["@Name"]}</li>
                             <li>Return Location: { vehRentalCore.ReturnLocation["@Name"]}</li>
                         </ul>
