@@ -3,6 +3,7 @@
   "description": "React application to display car rental availability",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://shreelimbkar.github.io/car-rental-availability/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -21,7 +22,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "npx eslint ./src/**/*.{js,jsx}",
-    "lint-fix": "eslint --fix"
+    "lint-fix": "eslint --fix",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
