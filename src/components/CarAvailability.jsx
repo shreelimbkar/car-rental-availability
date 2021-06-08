@@ -2,50 +2,42 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 import { getFormattedDate } from "../utils/utils";
+import loader from "../assests/images/ajax-loader.gif";
 
 export default function CarAvailability() {
 
+    const [ loading, setLoading ] = useState(true);
     const [cars, setCars] = useState(null);
     const [vehRentalCore, setVehRentalCore] = useState(null);
     const [vehVendorAvails, setVehVendorAvails] = useState(null);
     const [arrAvailableCars, setArrAvailableCars] = useState([]);
-    // const [vendors, setVendors] = useState([]);
     const [vehCode, setVehCode] = useState("");
-    // let vendors = [];
 
     useEffect(() => {
         getCarsData();
         setVehCode("All");
-        // console.log("vehRentalCore", cars.VehRentalCore, vehRentalCore);
     }, []);
 
     useEffect(() => {
         if (cars) {
-            // console.log("cars", cars);
             setVehRentalCore(cars.VehRentalCore);
             setVehVendorAvails(cars.VehVendorAvails);
-            // console.log("cars.VehRentalCore", cars.VehRentalCore);
-            // console.log("cars.VehVendorAvails", cars.VehVendorAvails);
             const ar = getAvailableCars(Event, vehVendorAvails, vehCode);
-            // console.log('ar', ar);
             setArrAvailableCars(ar);
         }
     }, [cars, vehVendorAvails, vehCode]);
 
     const getCarsData = async () => {
+        setLoading(true);
         const response = await fetch("https://www.cartrawler.com/ctabe/cars.json");
         const data = await response.json();
-        // console.log("data", data[0].VehAvailRSCore)
         setCars(data[0].VehAvailRSCore);
+        setLoading(false);
     }
 
     const getAvailableCars = (evt, vehVendorAvails, venCode) => {
-        // console.log("vendors", vendors);
-        console.log("vehVendorAvails, venCode", vehVendorAvails, venCode);
         let arrCA, filteredCars;
         if (vehVendorAvails && venCode === "All") {
-            // vendors.push("All");
-            // console.log("IF venCode", venCode);
             arrCA =  vehVendorAvails.reduce(
                 (arr, elem) => arr.concat(elem.VehAvails), []
             );
@@ -53,32 +45,39 @@ export default function CarAvailability() {
         } else {
             if (vehVendorAvails) {
                 const hasActive = evt.target.classList;
-                // vendors = [...vendors, venCode];
-                console.log('ELSE EVENT', evt);
                 if (hasActive.length) {
                     evt.target.classList.remove("active");
                 } else {
                     evt.target.classList.add("active");
                 }
                 
-                // evt.target.classList.remove("active");
                 vehVendorAvails.filter((c) => {
                     if (c.Vendor["@Code"] === venCode) {
                         filteredCars = c.VehAvails;
                     }
-                    // filteredCars = {...filteredCars };
                     return filteredCars;
                 })
             }
             setArrAvailableCars(filteredCars);
         }
-        // console.log("arrCA", arrCA);
         return arrCA;
     }
 
+    const ShowLoader = (() => {
+        return (
+            <div className="loadding">
+                <img src={loader} alt="loading..." />
+            </div>
+        )
+    });
+
     return (
         <>
-            { vehRentalCore && (
+            { loading && !vehRentalCore ?
+                (
+                    <ShowLoader />
+                ) :
+                (
                 <div className="legends">
                     <h2>Pickup/Return information (Legend)</h2>
                     <div className="vehRental">
@@ -101,11 +100,9 @@ export default function CarAvailability() {
                             {vehVendorAvails.map((ven, index) => {
                                 const vName = ven.Vendor["@Name"];
                                 const vCode = ven.Vendor["@Code"];
-                                // vendors.push(vCode);
                             return (<li key={index} className="" onClick={(e)=> {getAvailableCars(e, vehVendorAvails, vCode)}}>{ vName } ({ vCode })</li>)
                         })}
                             </ul>
-                    {/* {console.log("vehVendorAvails", vehVendorAvails)} */}
                     </div>
                 )
             }
@@ -113,14 +110,10 @@ export default function CarAvailability() {
                 vehVendorAvails && arrAvailableCars && (
                     <div className="vehAvails">
                         <h2>Available Cars</h2>
-                        {/* {
-                            console.log("setArrAvailableCars", arrAvailableCars)
-                        } */}
                         <main className="cards">
                             {
                                 arrAvailableCars.map((car, index) => {
                                     return (
-                                        
                                         <article className="card" key={index}>
                                             <Link to={{
                                             pathname: "/car-details",
@@ -144,12 +137,10 @@ export default function CarAvailability() {
                                     )
                                 })
                             }
-                            
                         </main>
                     </div>
                 )
             }
-           
         </>
     )
 }
