@@ -3,6 +3,7 @@
 ## Overview
 
 Using React, create a website that displays a visual representation of the following feed.
+(./src/assets/images/landing_page.png)
 
 ## Features
 
