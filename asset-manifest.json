@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.f887691e.chunk.css",
-    "main.js": "/static/js/main.89b4c993.chunk.js",
-    "main.js.map": "/static/js/main.89b4c993.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.92684f88.js",
-    "runtime-main.js.map": "/static/js/runtime-main.92684f88.js.map",
-    "static/js/2.2d453e8f.chunk.js": "/static/js/2.2d453e8f.chunk.js",
-    "static/js/2.2d453e8f.chunk.js.map": "/static/js/2.2d453e8f.chunk.js.map",
-    "static/js/3.bfeb1f13.chunk.js": "/static/js/3.bfeb1f13.chunk.js",
-    "static/js/3.bfeb1f13.chunk.js.map": "/static/js/3.bfeb1f13.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.f887691e.chunk.css.map": "/static/css/main.f887691e.chunk.css.map",
-    "static/js/2.2d453e8f.chunk.js.LICENSE.txt": "/static/js/2.2d453e8f.chunk.js.LICENSE.txt"
+    "main.css": "/car-rental-availability/static/css/main.f887691e.chunk.css",
+    "main.js": "/car-rental-availability/static/js/main.89b4c993.chunk.js",
+    "main.js.map": "/car-rental-availability/static/js/main.89b4c993.chunk.js.map",
+    "runtime-main.js": "/car-rental-availability/static/js/runtime-main.4eed154f.js",
+    "runtime-main.js.map": "/car-rental-availability/static/js/runtime-main.4eed154f.js.map",
+    "static/js/2.2d453e8f.chunk.js": "/car-rental-availability/static/js/2.2d453e8f.chunk.js",
+    "static/js/2.2d453e8f.chunk.js.map": "/car-rental-availability/static/js/2.2d453e8f.chunk.js.map",
+    "static/js/3.bfeb1f13.chunk.js": "/car-rental-availability/static/js/3.bfeb1f13.chunk.js",
+    "static/js/3.bfeb1f13.chunk.js.map": "/car-rental-availability/static/js/3.bfeb1f13.chunk.js.map",
+    "index.html": "/car-rental-availability/index.html",
+    "static/css/main.f887691e.chunk.css.map": "/car-rental-availability/static/css/main.f887691e.chunk.css.map",
+    "static/js/2.2d453e8f.chunk.js.LICENSE.txt": "/car-rental-availability/static/js/2.2d453e8f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.92684f88.js",
+    "static/js/runtime-main.4eed154f.js",
     "static/js/2.2d453e8f.chunk.js",
     "static/css/main.f887691e.chunk.css",
     "static/js/main.89b4c993.chunk.js"
